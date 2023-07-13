@@ -4,6 +4,7 @@ YouKuDownLoader
 .. image:: https://img.shields.io/pypi/v/ykdl.svg
    :target: https://pypi.python.org/pypi/ykdl
 
+添加 参数 --code, 默认转码成 mp4, 
 
 A video downloader focus on China mainland video sites.
 
@@ -55,8 +56,8 @@ Step:
 
     .. code-block:: console
 
-        pip3 install https://github.com/SeaHOH/ykdl/archive/master.zip --force-reinstall --no-deps
-        pip3 install https://github.com/SeaHOH/ykdl/archive/master.zip --upgrade
+        pip3 install https://github.com/fxsee1/ykdl/archive/master.zip --force-reinstall --no-deps
+        pip3 install https://github.com/fxsee1/ykdl/archive/master.zip --upgrade
 
  #. Make sure those folders are in your **PATH**, if they are not, add them.
 
