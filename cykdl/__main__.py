@@ -57,6 +57,7 @@ def parse_args(argv=None):
     parser.add_argument('-j', '--jobs', type=int, default=8, metavar='NUM', help='Number of jobs for multiprocess download')
     parser.add_argument('--debug', action='store_true', default=False, help='Print debug messages from ykdl')
     parser.add_argument('video_urls', type=str, nargs='*', help='video urls, leave empty then enter interactive mode')
+    parser.add_argument('--code', default='mp4', help='视频转码')
     global args
     args = parser.parse_args(argv)
     if args.start > 0:
@@ -112,6 +113,15 @@ def download(urls, name, ext, live=False):
                      fail_confirm=not args.no_fail_confirm,
                      fail_retry_eta=args.fail_retry_eta):
             lenth = len(urls)
+            if args.code:
+                if ext != args.code:
+                    #convert_code_cmd = [ 'ffmpeg', '-i',  name + '.' + ext, '-c', 'copy', '-y', name + '.' + args.code ]
+                    cmd = f'ffmpeg -i "{name}.{ext}" -c copy -y "{name}.{args.code}"'
+                    logger.info('文件已下载完成，正在转码中......')
+                    # subprocess.call(cmd)                    
+                    os.system(cmd)
+                    if os.path.exists(f'{name}.{args.code}'):
+                        os.remove(f'{name}.{ext}')
             if (m3u8 or lenth > 1) and not args.no_merge:
                 fix_sa_name(name, ext, lenth)
                 if m3u8_crypto:
